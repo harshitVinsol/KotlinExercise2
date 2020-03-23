@@ -1,24 +1,19 @@
-import java.util.*
+import kotlin.collections.HashSet
 /*
 Method that takes a String sentence to check if the sentence is a Pangram or not
  */
 fun isPangram(sentence: String): Boolean{
-    val alphaMap= TreeMap<Char, Boolean>()
-
-    for(c in 'a'..'z') {
-        alphaMap[c]=false
-    }
-
+    val alphaSet= HashSet<Char>()
     for(c in sentence){
-        alphaMap[c.toLowerCase()]=true
-    }
-
-    for(c in 'a'..'z'){
-        if(alphaMap[c] == false){
-            return false
+        if(c != ' '){
+            alphaSet.add(c.toLowerCase())
         }
     }
-    return true
+
+    if(alphaSet.size == 26)
+        return true
+    else
+        return false
 }
 /*
 Method main to check the working of method isPangram() with a correct and an incorrect sentence
